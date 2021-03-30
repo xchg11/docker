@@ -1,0 +1,24 @@
+version: "2.4"
+services:
+ mailrelay:
+  container_name: mailrelay
+  build:  ./build/
+  cpus: "2"
+  mem_limit: 512m
+  mem_reservation: 256m
+  hostname: mx.fire7.ru
+  restart: "unless-stopped"
+  volumes:
+###cgroup mem limit corrected cpu limit 
+   - /var/lib/lxcfs/proc/meminfo:/proc/meminfo
+   - /var/lib/lxcfs/proc/uptime:/proc/uptime
+   - /var/lib/lxcfs/proc/swaps:/proc/swaps
+   - /var/lib/lxcfs/proc/cpuinfo:/proc/cpuinfo
+   - /var/lib/lxcfs/proc/stat:/proc/stat
+   - /var/lib/lxcfs/proc/diskstats:/proc/diskstats
+  ports:
+  - "25:25/tcp"
+  - "587:587/tcp"
+  network_mode: "host"
+  environment:
+  - POSTFIX_myhostname=mx.example.com

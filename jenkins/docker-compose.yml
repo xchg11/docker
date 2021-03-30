@@ -1,0 +1,13 @@
+version: '2.4'
+services:
+  jenkins:
+    image: 'bitnami/jenkins:2'
+    ports:
+      - '10888:8080'
+      - '10443:8443'
+      - '50000:50000'
+    volumes:
+      - 'jenkins_data:/bitnami'
+volumes:
+  jenkins_data:
+    driver: local
