@@ -1,0 +1,14 @@
+version: '2.4'
+
+services:
+  dnsrobocert:
+    image: adferrand/dnsrobocert
+    container_name: dnsrobocert
+#    env_file: .env
+    volumes:
+    - ./letsencrypt:/etc/letsencrypt
+    - ./dnsrobocert:/etc/dnsrobocert
+    environment:
+    - VERSION=latest
+    restart: always
+    network_mode: 'host'

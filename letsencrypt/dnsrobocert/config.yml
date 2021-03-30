@@ -1,0 +1,26 @@
+draft: false
+acme:
+  email_account: 'example@example.com'
+  staging: false
+certificates:
+- domains:
+  - mx.example.com
+  name: mx.example.com
+  profile: power2dns
+- domains:
+  - '*.example.com'
+  - example.com
+  name: example.com
+  profile: power2dns
+- domains:
+  - '*.example2.com'
+  - example2.com
+  name: example2.com
+  profile: power2dns
+profiles:
+- name: power2dns
+  provider: powerdns
+  provider_options:
+   auth_token: 'lreiomnpwmiwepassword'
+   pdns_server: 'http://192.168.0.1:8081/'
+  sleep_time: 150
